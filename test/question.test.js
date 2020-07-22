@@ -4,8 +4,9 @@ import { describe, expect, it } from '@jest/globals'
 describe('a question', function () {
   it('has values before explicit initialisation', function () {
     const x = question.read()
-    expect(x.words).toBeDefined()
-    expect(x.numerals).toBeDefined()
+    expect(x.hours).toBeDefined()
+    expect(x.minutes).toBeDefined()
+    expect(x.seconds).toBeDefined()
   })
 
   it('changes values when next question is triggered', function () {
@@ -18,12 +19,12 @@ describe('a question', function () {
   it('can be checked with the wrong answer', function () {
     question.triggerNext()
     const x = question.read()
-    expect(question.checkAnswer(x.numerals + 1)).not.toBeTruthy()
+    expect(question.checkAnswer(x.seconds, x.seconds, x.seconds)).not.toBeTruthy()
   })
 
   it('can be checked with the right answer', function () {
     question.triggerNext()
     const x = question.read()
-    expect(question.checkAnswer(x.numerals)).toBeTruthy()
+    expect(question.checkAnswer(x.hours, x.minutes, x.seconds)).toBeTruthy()
   })
 })

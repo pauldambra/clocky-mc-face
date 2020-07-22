@@ -5,7 +5,7 @@ export const CorrectAnswer = ({ question, shouldDisplay, resetPage }) => {
   return (
     <div id='done' className='row' style={{ display: shouldDisplay }}>
       <div className='result done-row'>
-        Yes! {question.words} says {question.numerals}
+        Yes! the time was {question.hours}:{question.minutes}:{question.seconds}
       </div>
       <div className='done-row'>
         <button onClick={resetPage}>

@@ -38,11 +38,7 @@
             line-height: 2em;
             font-size: 1em;
             text-align: center;
-            width: 5em;
-        }
-
-        .tick {
-            color: green;
+            width: 2em;
         }
 
         .cross {
@@ -77,4 +73,57 @@
             border-radius: 10px;
             padding: 0.3em;
             cursor: pointer;
-        }</style></head><body><div id="root" class="game-area"><div><div id="question-row" class="row">Your number is sixty-six</div><div id="answer-row" class="row">In numerals this says:<input type="number" max="9999" min="0" step="1" value=""><div class="mark-holder"><span class="cross" style="display: none;">✘</span></div></div><div id="done" class="row" style="display: none;"><div class="result done-row">Yes! sixty-six says 66</div><div class="done-row"><button>Awesome, Again?</button></div><div id="cat-gif" class="done-row">Loading...</div></div></div></div><footer><a href="https://pauldambra.github.io/round-it/" target="_blank">You can also play 'Round it'</a></footer><script src="vendors.831a5ef2cbab8b43d6ec.js"></script><script src="main.9c57ca6908150103fa09.js"></script></body></html>
+        }</style><style>.clock {
+    border-radius: 50%;
+    background: #fff url(b71b09ba4c8834f4e71e09423f696e1c.svg) no-repeat center;
+    background-size: 88%;
+    height: 0;
+    padding-bottom: 31%;
+    position: relative;
+    width: 31%;
+    margin: auto;
+}
+
+.clock.simple:after {
+    background: #000;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+}
+
+#hours-hand {
+    background: #000;
+    height: 20%;
+    left: 48.75%;
+    position: absolute;
+    top: 30%;
+    transform-origin: 50% 100%;
+    width: 2.5%;
+}
+
+#minutes-hand {
+    background: #000;
+    height: 40%;
+    left: 49%;
+    position: absolute;
+    top: 10%;
+    transform-origin: 50% 100%;
+    width: 2%;
+}
+
+#seconds-hand {
+    background: #000;
+    height: 45%;
+    left: 49.5%;
+    position: absolute;
+    top: 14%;
+    transform-origin: 50% 80%;
+    width: 1%;
+    z-index: 8;
+}</style></head><body><div id="root" class="game-area"><div><div id="question-row" class="row"><div class="clock"><div class="hours-container"><div id="hours-hand" data-rotation="250" style="transform: rotateZ(250deg);"></div></div><div class="minutes-container"><div id="minutes-hand" data-rotation="120" style="transform: rotateZ(120deg);"></div></div><div class="seconds-container"><div id="seconds-hand" data-rotation="108" style="transform: rotateZ(108deg);"></div></div></div></div><div id="answer-row" class="row">The time is:<input type="number" max="12" min="0" step="1" id="hours" value="">&nbsp;:&nbsp;<input type="number" max="59" min="0" step="1" id="minutes" value="">&nbsp;:&nbsp;<input type="number" max="59" min="0" step="1" id="seconds" value=""><div class="mark-holder"><span class="cross" style="display: none;">✘</span></div></div><div id="done" class="row" style="display: none;"><div class="result done-row">Yes! the time was 8:20:18</div><div class="done-row"><button>Awesome, Again?</button></div><div id="cat-gif" class="done-row">Loading...</div></div></div></div><footer><a href="https://pauldambra.github.io/round-it/" target="_blank">You can also play 'Round it'</a></footer><script src="vendors.e800d535b18775883b11.js"></script><script src="main.82c8124c507d3d03dac5.js"></script></body></html>

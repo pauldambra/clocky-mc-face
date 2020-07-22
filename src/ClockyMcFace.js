@@ -4,16 +4,14 @@ import { QuestionRow } from './QuestionRow'
 import { AnswerInput } from './EnterAnswerRow'
 import { CorrectAnswer } from './CorrectAnswerRow'
 
-const NameyNumbers = () => {
-  const [answer, setAnswer] = React.useState('')
+const ClockyMcFace = () => {
+  const [answer, setAnswer] = React.useState({ hours: '', minutes: '', seconds: '' })
   const [answerIsCorrect, setAnswerIsCorrect] = React.useState(null)
   const [q, setQuestion] = React.useState(question.read())
 
-  const handleChange = event => {
-    const inputValue = event.target.value
-    setAnswer(inputValue)
-    const providedAnswer = parseInt(inputValue, 10)
-    setAnswerIsCorrect(question.checkAnswer(providedAnswer))
+  const handleChange = (answer) => {
+    setAnswer(answer)
+    setAnswerIsCorrect(question.checkAnswer(answer))
   }
 
   const showWhenCorrect = () =>
@@ -32,11 +30,15 @@ const NameyNumbers = () => {
   return (
     <div>
       <QuestionRow
-        words={q.words}
+        hours={q.hours}
+        minutes={q.minutes}
+        seconds={q.seconds}
         showRow={hideWhenCorrect()}
       />
       <AnswerInput
-        answer={answer}
+        hours={answer.hours}
+        minutes={answer.minutes}
+        seconds={answer.seconds}
         answerIsCorrect={answerIsCorrect}
         showRow={hideWhenCorrect()}
         handleChange={handleChange}
@@ -49,4 +51,4 @@ const NameyNumbers = () => {
     </div>)
 }
 
-export default NameyNumbers
+export default ClockyMcFace

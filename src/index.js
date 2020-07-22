@@ -1,5 +1,5 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
-import NameyNumbers from './NameyNumbers'
+import ClockyMcFace from './ClockyMcFace'
 
-hydrate(<NameyNumbers />, document.getElementById('root'))
+hydrate(<ClockyMcFace />, document.getElementById('root'))

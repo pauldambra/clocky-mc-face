@@ -1,8 +1,7 @@
 import React from 'react'
 import { act, render } from '@testing-library/react'
-import NameyNumbers from '../src/NameyNumbers'
+import ClockyMcFace from '../src/ClockyMcFace'
 import * as question from '../src/question'
-import { fireEvent } from '@testing-library/dom'
 import { describe, expect, it, jest, beforeAll, beforeEach } from '@jest/globals'
 
 import {
@@ -10,10 +9,24 @@ import {
 } from '@testing-library/jest-dom/matchers'
 
 import * as catGifs from '../src/cat-gifs'
+import { fireEvent } from '@testing-library/dom'
 
 expect.extend({ toHaveStyle, toHaveAttribute })
 
-describe('namey numbers success state', function () {
+const enterCorrectAnswer = container => {
+
+  const correctAnswer = question.read()
+  const hours = container.querySelector('#answer-row input#hours')
+  const minutes = container.querySelector('#answer-row input#minutes')
+
+  const seconds = container.querySelector('#answer-row input#seconds')
+  fireEvent.change(hours, { target: { value: correctAnswer.hours } })
+  fireEvent.change(minutes, { target: { value: correctAnswer.minutes } })
+  fireEvent.change(seconds, { target: { value: correctAnswer.seconds } })
+
+}
+
+describe('clocky mcface success state', function () {
   let addCatImageSpy
   let expectedQuestion
   let container
@@ -25,18 +38,13 @@ describe('namey numbers success state', function () {
         img.src = 'my test url'
         element.appendChild(img)
       })
-
   })
 
   beforeEach(() => {
     act(() => {
-      ({ container } = render(<NameyNumbers />))
+      ({ container } = render(<ClockyMcFace />))
 
-      const input = container.querySelector('#answer-row input')
-      expectedQuestion = question.read()
-      const correctAnswer = expectedQuestion.numerals
-      fireEvent.change(input, { target: { value: correctAnswer } })
-      fireEvent.click(container.querySelector('#done button'))
+      enterCorrectAnswer(container)
 
       expectedQuestion = question.read() // get newly updated question
     })
@@ -53,7 +61,7 @@ describe('namey numbers success state', function () {
 
     expect(doneRow).not.toHaveAttribute('display', 'none')
     expect(message.textContent)
-      .toEqual(`Yes! ${expectedQuestion.words} says ${expectedQuestion.numerals}`)
+      .toEqual(`Yes! The time was ${expectedQuestion.hours}:${expectedQuestion.minutes}:${expectedQuestion.seconds}`)
     expect(catGif).not.toBeNull()
     expect(catGif).not.toHaveAttribute('src', '')
   })
