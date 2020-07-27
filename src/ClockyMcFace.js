@@ -23,7 +23,7 @@ const ClockyMcFace = () => {
   const resetPage = () => {
     const newQuestion = question.triggerNext()
     setQuestion(newQuestion)
-    setAnswer('')
+    setAnswer({ hours: '', minutes: '', seconds: '' })
     setAnswerIsCorrect(null)
   }
 
@@ -36,9 +36,7 @@ const ClockyMcFace = () => {
         showRow={hideWhenCorrect()}
       />
       <AnswerInput
-        hours={answer.hours}
-        minutes={answer.minutes}
-        seconds={answer.seconds}
+        answer={answer}
         answerIsCorrect={answerIsCorrect}
         showRow={hideWhenCorrect()}
         handleChange={handleChange}

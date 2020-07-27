@@ -13,19 +13,19 @@ jest.mock('../src/question')
 
 describe('starting state', function () {
   it('starts with a clock visible', function () {
-    question.read.mockImplementation(() => ({ hours: 3, minutes: 6, seconds: 9 }))
+    question.read.mockImplementation(() => ({ hours: 3, minutes: 0, seconds: 0 }))
 
     const { container } = render(<ClockyMcFace />)
 
     const questionRow = container.querySelector('#question-row')
-    const hours = container.querySelector('#question-row #hours')
-    const minutes = container.querySelector('#question-row #minutes')
-    const seconds = container.querySelector('#question-row #seconds')
+    const hours = container.querySelector('#question-row #hours-hand')
+    const minutes = container.querySelector('#question-row #minutes-hand')
+    const seconds = container.querySelector('#question-row #seconds-hand')
 
     expect(questionRow).not.toHaveStyle('display: none')
-    expect(hours).toHaveStyle('transform: rotateZ(93deg)')
-    expect(minutes).toHaveStyle('transform: rotateZ(36deg)')
-    expect(seconds).toHaveStyle('transform: rotateZ(64deg)')
+    expect(hours).toHaveStyle('transform: rotateZ(90deg)')
+    expect(minutes).toHaveStyle('transform: rotateZ(0deg)')
+    expect(seconds).toHaveStyle('transform: rotateZ(0deg)')
   })
 
   it('starts with answer input visible', function () {

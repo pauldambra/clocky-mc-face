@@ -19,12 +19,13 @@ describe('a question', function () {
   it('can be checked with the wrong answer', function () {
     question.triggerNext()
     const x = question.read()
-    expect(question.checkAnswer(x.seconds, x.seconds, x.seconds)).not.toBeTruthy()
+    x.hours = x.hours + 1
+    expect(question.checkAnswer(x)).not.toBeTruthy()
   })
 
   it('can be checked with the right answer', function () {
     question.triggerNext()
     const x = question.read()
-    expect(question.checkAnswer(x.hours, x.minutes, x.seconds)).toBeTruthy()
+    expect(question.checkAnswer(x)).toBeTruthy()
   })
 })

@@ -2,29 +2,24 @@ import React from 'react'
 import { act, render } from '@testing-library/react'
 import ClockyMcFace from '../src/ClockyMcFace'
 import * as question from '../src/question'
-import { describe, expect, it, jest, beforeAll, beforeEach } from '@jest/globals'
+import {
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest
+} from '@jest/globals'
 
 import {
-  toHaveStyle, toHaveAttribute
+  toHaveAttribute,
+  toHaveStyle
 } from '@testing-library/jest-dom/matchers'
 
 import * as catGifs from '../src/cat-gifs'
 import { fireEvent } from '@testing-library/dom'
 
 expect.extend({ toHaveStyle, toHaveAttribute })
-
-const enterCorrectAnswer = container => {
-
-  const correctAnswer = question.read()
-  const hours = container.querySelector('#answer-row input#hours')
-  const minutes = container.querySelector('#answer-row input#minutes')
-
-  const seconds = container.querySelector('#answer-row input#seconds')
-  fireEvent.change(hours, { target: { value: correctAnswer.hours } })
-  fireEvent.change(minutes, { target: { value: correctAnswer.minutes } })
-  fireEvent.change(seconds, { target: { value: correctAnswer.seconds } })
-
-}
 
 describe('clocky mcface success state', function () {
   let addCatImageSpy
@@ -42,9 +37,17 @@ describe('clocky mcface success state', function () {
 
   beforeEach(() => {
     act(() => {
-      ({ container } = render(<ClockyMcFace />))
+      ({ container } = render(<ClockyMcFace/>))
 
-      enterCorrectAnswer(container)
+      const correctAnswer = question.read()
+      const hours = container.querySelector('#answer-row input#hours')
+      const minutes = container.querySelector('#answer-row input#minutes')
+      const seconds = container.querySelector('#answer-row input#seconds')
+
+      console.log(correctAnswer, 'entering')
+      fireEvent.change(hours, { target: { value: correctAnswer.hours } })
+      fireEvent.change(minutes, { target: { value: correctAnswer.minutes } })
+      fireEvent.change(seconds, { target: { value: correctAnswer.seconds } })
 
       expectedQuestion = question.read() // get newly updated question
     })
@@ -73,7 +76,7 @@ describe('clocky mcface success state', function () {
     expect(catGif).toHaveAttribute('src', 'my test url')
   })
 
-  it("the 'awesome, again' button resets the page", function () {
+  it('the \'awesome, again\' button resets the page', function () {
     const questionRow = container.querySelector('#question-row')
     const answerRow = container.querySelector('#answer-row')
     const done = container.querySelector('#done')
