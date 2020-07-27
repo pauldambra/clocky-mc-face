@@ -28,7 +28,7 @@ export const AnswerInput = ({ answer, answerIsCorrect, handleChange, showRow }) 
       id='answer-row' className='row'
       style={{ display: showRow }}
     >
-      The time is:
+      The time is: <br />
       <input
         type='number' max='12' min='0' step='1'
         id='hours'

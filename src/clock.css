@@ -5,11 +5,17 @@
     height: 0;
     padding-bottom: 31%;
     position: relative;
-    width: 31%;
+    width: 300px;
     margin: auto;
 }
 
-.clock.simple:after {
+@media (max-width: 750px) {
+    input {
+        width: 22%;
+    }
+}
+
+    .clock.simple:after {
     background: #000;
     border-radius: 50%;
     content: "";
