@@ -64,7 +64,7 @@ describe('clocky mcface success state', function () {
 
     expect(doneRow).not.toHaveAttribute('display', 'none')
     expect(message.textContent)
-      .toEqual(`Yes! The time was ${expectedQuestion.hours}:${expectedQuestion.minutes}:${expectedQuestion.seconds}`)
+      .toEqual(`Yes! The time was ${expectedQuestion.hours.toString().padStart(2, '0')}:${expectedQuestion.minutes.toString().padStart(2, '0')}:${expectedQuestion.seconds.toString().padStart(2, '0')}`)
     expect(catGif).not.toBeNull()
     expect(catGif).not.toHaveAttribute('src', '')
   })
