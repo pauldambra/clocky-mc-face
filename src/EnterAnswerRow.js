@@ -3,7 +3,7 @@ import React from 'react'
 const numberFromInput = selector =>
   parseInt(document.querySelector(selector).value, 10)
 
-export const AnswerInput = ({ answer, answerIsCorrect, handleChange, showRow }) => {
+export const AnswerInput = ({ answer, answerIsCorrect, includeSeconds, handleChange, showRow }) => {
   const showWhenWrong = () =>
     answerIsCorrect == null || answerIsCorrect ? 'none' : ''
 
@@ -12,14 +12,10 @@ export const AnswerInput = ({ answer, answerIsCorrect, handleChange, showRow }) 
   }, [])
 
   const onChange = (e) => {
-    const h = numberFromInput('#hours')
-    const m = numberFromInput('#minutes')
-    const s = numberFromInput('#seconds')
-    console.log({ h, m, s }, 'handling?')
     handleChange({
-      hours: h,
-      minutes: m,
-      seconds: s
+      hours: numberFromInput('#hours'),
+      minutes: numberFromInput('#minutes'),
+      seconds: includeSeconds && numberFromInput('#seconds')
     })
   }
 
@@ -38,12 +34,16 @@ export const AnswerInput = ({ answer, answerIsCorrect, handleChange, showRow }) 
         type='number' max='59' min='0' step='1'
         id='minutes'
         value={answer.minutes} onChange={onChange}
-      />&nbsp;:&nbsp;
-      <input
-        type='number' max='59' min='0' step='1'
-        id='seconds'
-        value={answer.seconds} onChange={onChange}
       />
+      {includeSeconds && <span>&nbsp;:&nbsp;</span>}
+      {
+        includeSeconds &&
+          <input
+            type='number' max='59' min='0' step='1'
+            id='seconds'
+            value={answer.seconds} onChange={onChange}
+          />
+      }
       <div className='mark-holder'>
         <span className='cross' style={{ display: showWhenWrong() }}>✘</span>
       </div>

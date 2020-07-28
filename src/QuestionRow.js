@@ -3,17 +3,15 @@ import React from 'react'
 import css from './clock.css' // eslint-disable-line no-unused-vars
 import { toHandPosition } from './fromTime'
 
-function getRotation (selectors) {
-  return document.querySelector(selectors)
-    .getAttribute('data-rotation')
-}
+const getRotation = selector => document.querySelector(selector) &&
+  document.querySelector(selector).getAttribute('data-rotation')
 
 const cssRotation = hours => `rotateZ(${hours}deg)`
 
 const setRotation = (elementId, rotation) => (document.getElementById(elementId)
   .style.transform = cssRotation(rotation))
 
-export const QuestionRow = ({ hours, minutes, seconds, showRow }) => {
+export const QuestionRow = ({ hours, minutes, seconds, includeSeconds, showRow }) => {
   const hands = toHandPosition({ hours, minutes, seconds })
 
   React.useLayoutEffect(() => {
@@ -58,13 +56,16 @@ export const QuestionRow = ({ hours, minutes, seconds, showRow }) => {
             style={{ transform: cssRotation(hands.minutes) }}
           />
         </div>
-        <div className='seconds-container'>
-          <div
-            id='seconds-hand'
-            data-rotation={hands.seconds}
-            style={{ transform: cssRotation(hands.seconds) }}
-          />
-        </div>
+        {
+          includeSeconds &&
+            <div className='seconds-container'>
+              <div
+                id='seconds-hand'
+                data-rotation={hands.seconds}
+                style={{ transform: cssRotation(hands.seconds) }}
+              />
+            </div>
+        }
       </div>
     </div>
   )

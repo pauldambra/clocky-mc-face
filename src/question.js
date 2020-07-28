@@ -11,11 +11,13 @@ export const triggerNext = () => {
   return read()
 }
 
-export const checkAnswer = (a) => {
-  const allMatch = a.hours === hours && a.minutes === minutes && a.seconds === seconds
+export const checkAnswer = (a, includeSeconds) => {
+  const skipOrCheckSeconds = !includeSeconds || a.seconds === seconds
+  const allMatch = a.hours === hours && a.minutes === minutes && skipOrCheckSeconds
   console.log({
     checking: a,
     correct: read(),
+    includeSeconds,
     allMatch
   })
   return allMatch
