@@ -1,5 +1,5 @@
 {
-  "name": "namey-numbers",
+  "name": "clocky-mc-face",
   "version": "0.0.0",
   "description": "a web page that teaches you how to convert from a number as words to a number as numerals",
   "private": true,
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pauldambra/namey-numbers.git"
+    "url": "git+https://github.com/pauldambra/clocky-mc-face.git"
   },
   "keywords": [],
   "author": "",
   "license": "CC-BY-SA-4.0",
   "bugs": {
-    "url": "https://github.com/pauldambra/namey-numbers/issues"
+    "url": "https://github.com/pauldambra/clocky-mc-face/issues"
   },
-  "homepage": "https://github.com/pauldambra/namey-numbers#readme",
+  "homepage": "https://github.com/pauldambra/clocky-mc-face#readme",
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",

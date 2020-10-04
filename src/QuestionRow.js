@@ -8,8 +8,10 @@ const getRotation = selector => document.querySelector(selector) &&
 
 const cssRotation = hours => `rotateZ(${hours}deg)`
 
-const setRotation = (elementId, rotation) => (document.getElementById(elementId)
-  .style.transform = cssRotation(rotation))
+const setRotation = (elementId, rotation) => {
+  const element = document.getElementById(elementId)
+  element && (element.style.transform = cssRotation(rotation))
+}
 
 export const QuestionRow = ({ hours, minutes, seconds, includeSeconds, showRow }) => {
   const hands = toHandPosition({ hours, minutes, seconds })

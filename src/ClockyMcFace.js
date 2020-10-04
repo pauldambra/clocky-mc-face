@@ -12,9 +12,10 @@ const ClockyMcFace = () => {
   })
   const [answerIsCorrect, setAnswerIsCorrect] = React.useState(null)
   const [q, setQuestion] = React.useState(question.read())
-  const [includeSeconds, setIncludeQuestions] = React.useState(true)
+  const [includeSeconds, setIncludeQuestions] = React.useState(false)
 
   const handleAnswerChange = (answer) => {
+    console.log({ handling: answer })
     setAnswer(answer)
     setAnswerIsCorrect(question.checkAnswer(answer, includeSeconds))
   }

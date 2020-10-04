@@ -18,28 +18,25 @@ const enterCorrectAnswer = container => {
   const hours = container.querySelector('#answer-row input#hours')
   const minutes = container.querySelector('#answer-row input#minutes')
 
-  fireEvent.change(hours, { target: { value: correctAnswer.hours } })
-  fireEvent.change(minutes, { target: { value: correctAnswer.minutes } })
+  console.log({entering: correctAnswer})
+
+  act(() => {
+    fireEvent.change(hours, { target: { value: correctAnswer.hours } })
+    fireEvent.change(minutes, { target: { value: correctAnswer.minutes } })
+  })
 }
 
 describe('can choose not to include seconds', function () {
-  it('there is a checkbox which starts off ticked', function () {
+  it('there is a checkbox which starts off not ticked', function () {
     const { container } = render(<ClockyMcFace />)
 
     const input = container.querySelector('#difficulty input')
 
-    expect(input.checked).toEqual(true)
+    expect(input.checked).toEqual(false)
   })
 
   it("when the checkbox is unchecked the seconds hand is not visible", () => {
-
     const { container } = render(<ClockyMcFace />)
-
-    const input = container.querySelector('#difficulty input')
-
-    act(() => {
-      fireEvent.click(input)
-    })
 
     const secondsHand = container.querySelector(".seconds-container")
     expect(secondsHand).toBeNull();
@@ -49,12 +46,6 @@ describe('can choose not to include seconds', function () {
 
     const { container } = render(<ClockyMcFace />)
 
-    const input = container.querySelector('#difficulty input')
-
-    act(() => {
-      fireEvent.click(input)
-    })
-
     const secondsAnswerInput = container.querySelector("#answer-row #seconds")
     expect(secondsAnswerInput).toBeNull();
   })
@@ -63,12 +54,9 @@ describe('can choose not to include seconds', function () {
     const { container } = render(<ClockyMcFace />)
     const doneRow = container.querySelector('#done')
 
-    const input = container.querySelector('#difficulty input')
-
     expect(doneRow).toHaveStyle('display: none')
 
     act(() => {
-      fireEvent.click(input)
       enterCorrectAnswer(container)
     })
 
@@ -78,10 +66,8 @@ describe('can choose not to include seconds', function () {
   it("when excluding seconds the success message doesn't report seconds", () => {
     const { container } = render(<ClockyMcFace />)
     const expectedQuestion = question.read()
-    const input = container.querySelector('#difficulty input')
 
     act(() => {
-      fireEvent.click(input)
       enterCorrectAnswer(container)
     })
 
